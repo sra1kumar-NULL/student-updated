@@ -1,3 +1,4 @@
+import 'package:app/Notifications/Notify.dart';
 import 'package:app/authentication/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -111,9 +112,10 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             ElevatedButton(
               onPressed: () {
-                signOut();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()));
+                Notify();
+                // signOut();
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (context) => LoginScreen()));
               },
               child: Text(
                 "Sign Out",
