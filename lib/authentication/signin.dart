@@ -5,15 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 TextEditingController rollNoController = TextEditingController();
 TextEditingController passNoController = TextEditingController();
-void login() async {
-  final prefs = await SharedPreferences.getInstance();
-  await prefs.setString('roll', rollNoController.text);
-  await prefs.setString('pass', passNoController.text);
-  final String? roll = prefs.getString('roll');
-  if (roll != null) {
-    print(roll);
-  }
-}
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -23,15 +14,29 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  @override
-  void initState() async {
+  void login() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('roll', rollNoController.text);
+    await prefs.setString('pass', passNoController.text);
+    final String? roll = prefs.getString('roll');
+    final String? pass = prefs.getString('pass');
+    if (roll != null && pass != null) {
+      loginCheck();
+    }
+  }
+
+  void loginCheck() async {
     final prefs = await SharedPreferences.getInstance();
     final String? roll = prefs.getString('roll');
-    //print(roll);
     if (roll != null) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => StartScreen()));
     }
+  }
+
+  @override
+  void initState() {
+    loginCheck();
     super.initState();
   }
 
@@ -67,6 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.all(20.0),
             child: TextField(
               controller: passNoController,
+              obscureText: true,
               decoration: InputDecoration(
                   border: OutlineInputBorder(), hintText: "Password"),
             ),

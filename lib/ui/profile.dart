@@ -1,8 +1,39 @@
 import 'package:app/authentication/signin.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  void signOut() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('roll');
+    await prefs.remove('pass');
+  }
+
+  late String name = "";
+  late String roll = "";
+  void fetchProfile() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      name = prefs.getString('name').toString();
+      roll = prefs.getString('roll').toString();
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    fetchProfile();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +56,6 @@ class ProfilePage extends StatelessWidget {
                   ),
                   child: Image.asset("assets/user-profile.jpg")),
             ),
-
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
@@ -43,7 +73,10 @@ class ProfilePage extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 4,
                     ),
-                    Text(" "),
+                    Text(
+                      name == null ? " " : name,
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
                   ],
                 ),
               ),
@@ -65,29 +98,10 @@ class ProfilePage extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 4,
                     ),
-                    Text(" "),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFF5db075),
-                  borderRadius: BorderRadius.circular(6.0),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
                     Text(
-                      "Department    :",
-                      style: TextStyle(color: Colors.white, fontSize: 24),
+                      roll == null ? " " : roll,
+                      style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 4,
-                    ),
-                    Text(" "),
                   ],
                 ),
               ),
@@ -97,6 +111,7 @@ class ProfilePage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
+                signOut();
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => LoginScreen()));
               },
@@ -104,12 +119,6 @@ class ProfilePage extends StatelessWidget {
                 "Sign Out",
               ),
             )
-
-            // Text("Made with ❤ by Mr.S and Team",style: TextStyle(
-            //   fontWeight: FontWeight.w700,
-            //   fontSize: 18,
-            //   color: const Color(0xFF5db075)
-            // ),)
           ],
         ),
       ),

@@ -26,7 +26,6 @@ class _AttendenceState extends State<Attendence> {
 
   void tempAttend() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('roll', '18031A0551');
     final String? roll = prefs.getString('roll');
     textController.text = roll.toString();
     WidgetsBinding.instance?.addPostFrameCallback((_) async {
@@ -52,32 +51,6 @@ class _AttendenceState extends State<Attendence> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // FutureBuilder(
-            //   builder: (context, snapshot) {
-            //     var d = json.decode(snapshot.data.toString());
-            //     attend = d;
-            //     return Text("");
-            //   },
-            //   future: DefaultAssetBundle.of(context)
-            //       .loadString("assets/attendences.json"),
-            // ),
-            //  Padding(
-            //    padding: const EdgeInsets.all(8.0),
-            //    child: TextField(
-            //      controller:textController ,
-            //      decoration: InputDecoration(
-            //        hintText: "Roll Number",
-            //        border: OutlineInputBorder()
-            //      ),
-            //    ),
-            //  ),
-            //   FlatButton(
-            //     onPressed: () {
-
-            //     },
-            //     color: const Color(0xFF5db075),
-            //     child: Text("Search",style: TextStyle(color:Colors.white),),
-            //   ),
             Center(
               child: Container(
                   width: MediaQuery.of(context).size.width / 2,

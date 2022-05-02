@@ -1,14 +1,45 @@
 import 'package:app/authentication/signin.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
   @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController rollNoController = TextEditingController();
+  TextEditingController passNoController = TextEditingController();
+  void signUp() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('roll', rollNoController.text);
+    await prefs.setString('name', nameController.text);
+    await prefs.setString('pass', passNoController.text);
+    // final String? roll = prefs.getString('roll');
+    // print(roll);
+
+    // rollNoController.text = roll.toString();
+  }
+
+  void removeDet() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('roll');
+    await prefs.remove('name');
+    await prefs.remove('pass');
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    removeDet();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    TextEditingController nameController = TextEditingController();
-    TextEditingController rollNoController = TextEditingController();
-    TextEditingController passNoController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -17,6 +48,7 @@ class SignUpPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
+      resizeToAvoidBottomInset: false,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,9 +64,6 @@ class SignUpPage extends StatelessWidget {
                   border: OutlineInputBorder(), hintText: "Name"),
             ),
           ),
-          // SizedBox(
-          //   height: 5,
-          // ),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: TextField(
@@ -43,13 +72,11 @@ class SignUpPage extends StatelessWidget {
                   border: OutlineInputBorder(), hintText: "Roll Number"),
             ),
           ),
-          // SizedBox(
-          //   height: 5,
-          // ),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: TextField(
               controller: passNoController,
+              obscureText: true,
               decoration: InputDecoration(
                   border: OutlineInputBorder(), hintText: "Password"),
             ),
@@ -58,7 +85,7 @@ class SignUpPage extends StatelessWidget {
             height: 50,
           ),
           ElevatedButton(
-            onPressed: () => {},
+            onPressed: () => {signUp()},
             child: Text(
               "Sign Up",
               style: TextStyle(fontSize: 21, color: Colors.white),

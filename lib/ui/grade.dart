@@ -86,7 +86,6 @@ class _GradeCalcState extends State<GradeCalc> {
 
   void temp() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('roll', '18031A0551');
     final String? roll = prefs.getString('roll');
     rollcontroller.text = roll.toString();
     WidgetsBinding.instance?.addPostFrameCallback((_) async {
