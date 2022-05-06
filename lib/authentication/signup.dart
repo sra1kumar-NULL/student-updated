@@ -85,7 +85,30 @@ class _SignUpPageState extends State<SignUpPage> {
             height: 50,
           ),
           ElevatedButton(
-            onPressed: () => {signUp()},
+            onPressed: () {
+              if (rollNoController.text.substring(0, 4) == "1803") {
+                int x = int.parse(rollNoController.text.substring(8));
+                if (x <= 553) {
+                  signUp();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: const Text("Invalid Roll Number"),
+                    duration: const Duration(seconds: 3),
+                  ));
+                }
+              }
+              if (rollNoController.text.substring(0, 4) == "1903") {
+                int x = int.parse(rollNoController.text.substring(8));
+                if (x <= 512) {
+                  signUp();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: const Text("Invalid Roll Number"),
+                    duration: const Duration(seconds: 3),
+                  ));
+                }
+              }
+            },
             child: Text(
               "Sign Up",
               style: TextStyle(fontSize: 21, color: Colors.white),
@@ -123,3 +146,25 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 }
+
+    
+    // if (check.substring(0, 4) == "1903") {
+    //   if (showData[showData.length - 1]['Htno'].substring(0, 4) == "1903") {
+    //     final val =
+    //         int.parse(showData[showData.length - 1]['Htno'].substring(8));
+
+    //     index = showData.length - val * subs;
+
+    //     int x = int.parse(check.substring(8));
+    //     index = index + (x - 1) * subs;
+    //     debugPrint(index.toString());
+    //     while (showData[index]['Htno'] != check) {
+    //       index++;
+    //     }
+    //     if (index >= showData.length - 1) {
+    //       index = showData.length - 1;
+    //     }
+    //   } else {
+    //     c = 1;
+    //   }
+    // }

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:app/Notifications/Notify.dart';
 
 // import 'package:flutter/services.dart';
 class Attendence extends StatefulWidget {
@@ -37,6 +38,7 @@ class _AttendenceState extends State<Attendence> {
   void initState() {
     // TODO: implement initState
     tempAttend();
+    Notify();
     super.initState();
   }
 
@@ -68,6 +70,14 @@ class _AttendenceState extends State<Attendence> {
                           fontWeight: FontWeight.bold),
                     ),
                   )),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Notify()))
+              },
+              child: Text("Refresh"),
             ),
           ]),
     );
