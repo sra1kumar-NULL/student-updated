@@ -74,8 +74,7 @@ class _AttendenceState extends State<Attendence> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Notify()))
+                sendNotification()
               },
               child: Text("Refresh"),
             ),

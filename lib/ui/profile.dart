@@ -113,6 +113,10 @@ class _ProfilePageState extends State<ProfilePage> {
             ElevatedButton(
               onPressed: () {
                 signOut();
+                 Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()));
               },
               child: Text(
                 "Sign Out",

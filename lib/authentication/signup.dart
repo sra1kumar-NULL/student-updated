@@ -1,6 +1,7 @@
 import 'package:app/authentication/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toast/toast.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -35,6 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
   void initState() {
     // TODO: implement initState
     removeDet();
+    ToastContext().init(context);
     super.initState();
   }
 
@@ -86,26 +88,34 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           ElevatedButton(
             onPressed: () {
+              print(rollNoController.text);
               if (rollNoController.text.substring(0, 4) == "1803") {
                 int x = int.parse(rollNoController.text.substring(8));
-                if (x <= 553) {
+                if (x <= 53) {
                   signUp();
+                  Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()));
                 } else {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: const Text("Invalid Roll Number"),
-                    duration: const Duration(seconds: 3),
-                  ));
+                  
+                  Toast.show("Invalid Roll Number",duration: 3,gravity: Toast.center);
                 }
               }
               if (rollNoController.text.substring(0, 4) == "1903") {
                 int x = int.parse(rollNoController.text.substring(8));
-                if (x <= 512) {
+                if (x <= 12) {
                   signUp();
+                  Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()));
                 } else {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: const Text("Invalid Roll Number"),
-                    duration: const Duration(seconds: 3),
-                  ));
+                  Toast.show("Invalid Roll Number",duration: 3,gravity: Toast.center);
+                  // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  //   content: const Text("Invalid Roll Number"),
+                  //   duration: const Duration(seconds: 3),
+                  // ));
                 }
               }
             },
