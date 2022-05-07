@@ -110,6 +110,7 @@ class _GradeCalcState extends State<GradeCalc> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xFF5db075),
         title: Text(
           "Grade Card",
           style: TextStyle(color: Colors.white),

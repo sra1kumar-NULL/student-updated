@@ -44,6 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor:  const Color(0xFF5db075),
         title: Text(
           "Login Page",
           style: TextStyle(color: Colors.white),
@@ -101,8 +102,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "if don't have account",
-                    style: TextStyle(fontSize: 18, color: Colors.black),
+                    "if don't have account? ",
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                   SizedBox(
                     width: 2,

@@ -46,6 +46,7 @@ class _AttendenceState extends State<Attendence> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xFF5db075),
         title: Text("Attendence", style: TextStyle(color: Colors.white)),
       ),
       resizeToAvoidBottomInset: false,

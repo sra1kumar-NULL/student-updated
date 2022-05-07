@@ -24,7 +24,11 @@ void main() {
   runApp(MaterialApp(
     theme: ThemeData(
       primarySwatch: const Color(0xFF5db075).toMaterialColor(),
+      colorScheme: ColorScheme.dark(
+        primary: const Color(0xFF5db075),  
+      )
     ),
+
     debugShowCheckedModeBanner: false,
     home: AnimatedSplashScreen(
       splashTransition: SplashTransition.slideTransition,

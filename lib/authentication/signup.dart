@@ -44,6 +44,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor:  const Color(0xFF5db075),
         title: Text(
           "SignUp Page",
           style: TextStyle(color: Colors.white),
@@ -132,8 +133,8 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("if already an user ",
-                    style: TextStyle(fontSize: 18, color: Colors.black)),
+                Text("if already an user? ",
+                    style: TextStyle(fontSize: 18, color: Colors.white)),
                 SizedBox(
                   width: 2,
                 ),

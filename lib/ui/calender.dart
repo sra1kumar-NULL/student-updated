@@ -8,6 +8,7 @@ class Calender extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xFF5db075),
         title: Text("Academic Calendar", style: TextStyle(color: Colors.white)),
       ),
       body: Center(
