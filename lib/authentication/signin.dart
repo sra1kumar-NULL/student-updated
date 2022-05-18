@@ -32,12 +32,19 @@ class _LoginScreenState extends State<LoginScreen> {
     if (roll != null && pass !=null) {
       // print("ROll No as per controller: ${rollNoController.text}");
       // print("ROll No as per user : ${roll}");
-      if(roll==rollNoController.text && pass==passNoController.text){
+      //if(roll==rollNoController.text && pass==passNoController.text){
          check=true;
+         Navigator.push(context, MaterialPageRoute(builder: (context)=>StartScreen()));
+      //}
+      // else{
+      //   check=false;
+      // }
+    }
+    else{
+      if(pass==null){
+          prefs.setString('pass',passNoController.text);
       }
-      else{
-        check=false;
-      }
+      
     }
   }
 
@@ -92,12 +99,12 @@ class _LoginScreenState extends State<LoginScreen> {
           ElevatedButton(
             onPressed: ()  {
               loginCheck();
-              if(check==false){
-                Toast.show("Invalid Login Detected",duration: 3,gravity: Toast.center);
-              };
-              if(check==true){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>StartScreen()));
-              };
+              // if(check==false){
+              //   Toast.show("Invalid Login Detected",duration: 3,gravity: Toast.center);
+              // };
+              // if(check==true){
+              //   ;
+              // };
              
             },
             child: Text(

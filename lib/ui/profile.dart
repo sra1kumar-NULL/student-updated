@@ -20,7 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void signOff() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('pass');
-    await prefs.remove('roll');
+    
   }
 
   late String name = "";
@@ -122,6 +122,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ElevatedButton(
                   onPressed: () {
                     //signOut();
+                    signOff();
                      Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
