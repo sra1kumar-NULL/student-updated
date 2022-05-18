@@ -26,8 +26,8 @@ void sendNotification() async {
       description: "Notify", importance: Importance.high);
   flutterLocalNotificationsPlugin.show(
     0,
-    "Notify",
-    "APP Notification",
+    "Attendence Reminder",
+    "you need to improve your attendance",
     NotificationDetails(
       android: AndroidNotificationDetails(channel.id, channel.name,
           channelDescription: channel.description),

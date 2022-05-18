@@ -2,7 +2,7 @@ import 'package:app/authentication/signup.dart';
 import 'package:app/ui/starthome.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:toast/toast.dart';
 TextEditingController rollNoController = TextEditingController();
 TextEditingController passNoController = TextEditingController();
 
@@ -24,19 +24,27 @@ class _LoginScreenState extends State<LoginScreen> {
       loginCheck();
     }
   }
-
+  bool check=false;
   void loginCheck() async {
     final prefs = await SharedPreferences.getInstance();
     final String? roll = prefs.getString('roll');
-    if (roll != null) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => StartScreen()));
+    final String? pass = prefs.getString('pass');
+    if (roll != null && pass !=null) {
+      // print("ROll No as per controller: ${rollNoController.text}");
+      // print("ROll No as per user : ${roll}");
+      if(roll==rollNoController.text && pass==passNoController.text){
+         check=true;
+      }
+      else{
+        check=false;
+      }
     }
   }
 
   @override
   void initState() {
     loginCheck();
+    ToastContext().init(context);
     super.initState();
   }
 
@@ -82,10 +90,15 @@ class _LoginScreenState extends State<LoginScreen> {
             height: 50,
           ),
           ElevatedButton(
-            onPressed: () => {
-              login()
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (context) => StartScreen()))
+            onPressed: ()  {
+              loginCheck();
+              if(check==false){
+                Toast.show("Invalid Login Detected",duration: 3,gravity: Toast.center);
+              };
+              if(check==true){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>StartScreen()));
+              };
+             
             },
             child: Text(
               "Login",

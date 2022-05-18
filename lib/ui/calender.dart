@@ -6,15 +6,17 @@ class Calender extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF5db075),
-        title: Text("Academic Calendar", style: TextStyle(color: Colors.white)),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF5db075),
+          title: Text("Academic Calendar", style: TextStyle(color: Colors.white)),
+        ),
+        body: Center(
+            child: PhotoView(
+          imageProvider: AssetImage("assets/calender.png"),
+        )),
       ),
-      body: Center(
-          child: PhotoView(
-        imageProvider: AssetImage("assets/calender.png"),
-      )),
     );
   }
 }

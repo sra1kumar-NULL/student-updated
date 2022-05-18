@@ -11,9 +11,9 @@ class GradeCalc extends StatefulWidget {
 
 class _GradeCalcState extends State<GradeCalc> {
   final rollcontroller = TextEditingController();
-  var sem1, sem2, sem3, sem4, sem5, sem6, sem7;
-  var gpa1, gpa2, gpa3, gpa4, gpa5, gpa6, gpa7;
-
+  var sem1, sem2, sem3, sem4, sem5, sem6, sem7,sem8;
+  var gpa1, gpa2, gpa3, gpa4, gpa5, gpa6, gpa7,gpa8;
+  //var cgpa;
   Future getSem1() async {
     String data =
         await DefaultAssetBundle.of(context).loadString('assets/cse/sem1.json');
@@ -98,11 +98,17 @@ class _GradeCalcState extends State<GradeCalc> {
       await getSem7();
     });
   }
+  // void cGpa() async{
+  //   cgpa=gpa1+gpa2+gpa3+gpa4+gpa5+gpa6+gpa7/7;
+  // }
 
   @override
-  void initState() {
-    // TODO: implement initState
+  void initState() 
+  {
+    //Future.delayed(Duration(seconds: 15));
     temp();
+    //cGpa();
+    
     super.initState();
   }
 
@@ -121,75 +127,75 @@ class _GradeCalcState extends State<GradeCalc> {
           child: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              children: [
-                FutureBuilder(
-                  builder: (context, snapshot) {
-                    var showData = json.decode(snapshot.data.toString());
-                    sem1 = showData;
-                    return const Text("");
-                  },
-                  future:
-                      //getSem1(),
-                      DefaultAssetBundle.of(context)
-                          .loadString("assets/cse/sem1.json"),
-                ),
-                FutureBuilder(
-                  builder: (context, snapshot) {
-                    var showData = json.decode(snapshot.data.toString());
-                    sem2 = showData;
-                    return const Text("");
-                  },
-                  future: DefaultAssetBundle.of(context)
-                      .loadString("assets/cse/sem2.json"),
-                ),
-                FutureBuilder(
-                  builder: (context, snapshot) {
-                    var showData = json.decode(snapshot.data.toString());
-                    sem3 = showData;
-                    return const Text("");
-                  },
-                  future: DefaultAssetBundle.of(context)
-                      .loadString("assets/cse/sem3.json"),
-                ),
-                FutureBuilder(
-                  builder: (context, snapshot) {
-                    var showData = json.decode(snapshot.data.toString());
-                    sem4 = showData;
-                    return const Text("");
-                  },
-                  future: DefaultAssetBundle.of(context)
-                      .loadString("assets/cse/sem4.json"),
-                ),
-                FutureBuilder(
-                  builder: (context, snapshot) {
-                    var showData = json.decode(snapshot.data.toString());
-                    sem5 = showData;
-                    return const Text("");
-                  },
-                  future: DefaultAssetBundle.of(context)
-                      .loadString("assets/cse/sem5.json"),
-                ),
-                FutureBuilder(
-                  builder: (context, snapshot) {
-                    var showData = json.decode(snapshot.data.toString());
-                    sem6 = showData;
-                    return const Text("");
-                  },
-                  future: DefaultAssetBundle.of(context)
-                      .loadString("assets/cse/sem6.json"),
-                ),
-                FutureBuilder(
-                  builder: (context, snapshot) {
-                    var showData = json.decode(snapshot.data.toString());
-                    sem7 = showData;
-                    return const Text("");
-                  },
-                  future: DefaultAssetBundle.of(context)
-                      .loadString("assets/cse/sem7.json"),
-                ),
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     FutureBuilder(
+            //       builder: (context, snapshot) {
+            //         var showData = json.decode(snapshot.data.toString());
+            //         sem1 = showData;
+            //         return const Text("");
+            //       },
+            //       future:
+            //           //getSem1(),
+            //           DefaultAssetBundle.of(context)
+            //               .loadString("assets/cse/sem1.json"),
+            //     ),
+            //     FutureBuilder(
+            //       builder: (context, snapshot) {
+            //         var showData = json.decode(snapshot.data.toString());
+            //         sem2 = showData;
+            //         return const Text("");
+            //       },
+            //       future: DefaultAssetBundle.of(context)
+            //           .loadString("assets/cse/sem2.json"),
+            //     ),
+            //     FutureBuilder(
+            //       builder: (context, snapshot) {
+            //         var showData = json.decode(snapshot.data.toString());
+            //         sem3 = showData;
+            //         return const Text("");
+            //       },
+            //       future: DefaultAssetBundle.of(context)
+            //           .loadString("assets/cse/sem3.json"),
+            //     ),
+            //     FutureBuilder(
+            //       builder: (context, snapshot) {
+            //         var showData = json.decode(snapshot.data.toString());
+            //         sem4 = showData;
+            //         return const Text("");
+            //       },
+            //       future: DefaultAssetBundle.of(context)
+            //           .loadString("assets/cse/sem4.json"),
+            //     ),
+            //     FutureBuilder(
+            //       builder: (context, snapshot) {
+            //         var showData = json.decode(snapshot.data.toString());
+            //         sem5 = showData;
+            //         return const Text("");
+            //       },
+            //       future: DefaultAssetBundle.of(context)
+            //           .loadString("assets/cse/sem5.json"),
+            //     ),
+            //     FutureBuilder(
+            //       builder: (context, snapshot) {
+            //         var showData = json.decode(snapshot.data.toString());
+            //         sem6 = showData;
+            //         return const Text("");
+            //       },
+            //       future: DefaultAssetBundle.of(context)
+            //           .loadString("assets/cse/sem6.json"),
+            //     ),
+            //     FutureBuilder(
+            //       builder: (context, snapshot) {
+            //         var showData = json.decode(snapshot.data.toString());
+            //         sem7 = showData;
+            //         return const Text("");
+            //       },
+            //       future: DefaultAssetBundle.of(context)
+            //           .loadString("assets/cse/sem7.json"),
+            //     ),
+            //   ],
+            // ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
@@ -332,6 +338,51 @@ class _GradeCalcState extends State<GradeCalc> {
                         width: 120,
                       ),
                       Text(gpa7 == null ? "" : gpa7.toStringAsFixed(2)),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 40,
+                child: Card(
+                  elevation: 8,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Text("Year IV Semester 2  :"),
+                      SizedBox(
+                        width: 120,
+                      ),
+                      Text(gpa8 == null ? "" : gpa8.toStringAsFixed(2)),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 40,
+                child: Card(
+                  elevation: 8,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Text("Overall CGPA (until) :"),
+                      SizedBox(
+                        width: 120,
+                      ),
+                      Text((gpa1==null && gpa2==null && gpa3==null && gpa4==null && gpa5==null && gpa6==null && gpa7==null)?" ":((gpa1 == null && gpa2==null) ? (((gpa3+gpa4+gpa5+gpa6+gpa7)/5).toStringAsFixed(2)) : (((gpa1+gpa2+gpa3+gpa4+gpa5+gpa6+gpa7)/7).toStringAsFixed(2)))),
                     ],
                   ),
                 ),

@@ -15,6 +15,12 @@ class _ProfilePageState extends State<ProfilePage> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('roll');
     await prefs.remove('pass');
+    await prefs.remove('name');
+  }
+  void signOff() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('pass');
+    await prefs.remove('roll');
   }
 
   late String name = "";
@@ -110,17 +116,37 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(
               height: 20,
             ),
-            ElevatedButton(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    //signOut();
+                     Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginScreen()));
+                  },
+                  child: Text(
+                    "Sign Out",
+                  ),
+                ),
+                SizedBox(
+                  width: 60,
+                ),
+                ElevatedButton(
               onPressed: () {
-                signOut();
+                 signOut();
                  Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => LoginScreen()));
               },
               child: Text(
-                "Sign Out",
+                "Delete Account",
               ),
+            )
+              ],
             )
           ],
         ),

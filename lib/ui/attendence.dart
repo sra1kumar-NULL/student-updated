@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:app/Notifications/Notify.dart';
@@ -36,7 +34,7 @@ class _AttendenceState extends State<Attendence> {
 
   @override
   void initState() {
-    // TODO: implement initState
+   
     tempAttend();
     Notify();
     super.initState();
